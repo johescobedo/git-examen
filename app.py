@@ -83,3 +83,14 @@ def eliminar_producto(codigo, productos, inventario):
         del inventario[llave_encontrada]
         return True
     return False
+
+def mostrar_productos(productos, inventario):
+    for codigo in productos.keys():
+        print("")
+        print(f"CODIGO: {codigo}")
+        print(f"Nombre: {productos[codigo][0]}")
+        print(f"Categoría: {productos[codigo][1]}")
+        print(f"Precio: ${productos[codigo][2]}")
+        print(f"Disponible: {productos[codigo][3]}")
+        print(f"Stock: {inventario[codigo][0]}")
+        print(f"Vendidos: {inventario[codigo][1]}")
