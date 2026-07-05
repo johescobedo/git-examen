@@ -28,3 +28,15 @@ def validar_stock(stock):
 
 def validar_vendidos(vendidos):
     return vendidos >= 0
+
+# funciones
+
+def stock_categoria(categoria, productos, inventario):
+    total_stock = 0
+    for codigo in productos.keys():
+        datos_producto = productos[codigo]
+        categoria_producto = datos_producto[1]
+
+        if categoria_producto.lower() == categoria.strip().lower():
+            total_stock = total_stock + inventario[codigo][0]
+    print(f"Stock total para la categoría '{categoria}': {total_stock}")
