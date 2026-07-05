@@ -62,3 +62,12 @@ def actualizar_precio(codigo, nuevo_precio, productos):
             productos[llave][2] = nuevo_precio 
             return True
     return False
+
+def agregar_producto(codigo, nombre, categoria, precio, disponible, stock, vendidos, productos, inventario):
+    llave = codigo.strip().upper() 
+    if disponible.lower() == "s":
+        disp_bool = True
+    else:
+        disp_bool = False
+    productos[llave] = [nombre.strip(), categoria.strip(), precio, disp_bool]
+    inventario[llave] = [stock, vendidos]
