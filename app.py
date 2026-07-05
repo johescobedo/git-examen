@@ -40,3 +40,18 @@ def stock_categoria(categoria, productos, inventario):
         if categoria_producto.lower() == categoria.strip().lower():
             total_stock = total_stock + inventario[codigo][0]
     print(f"Stock total para la categoría '{categoria}': {total_stock}")
+
+def buscar_precio(p_min, p_max, productos, inventario):
+    encontrados = []
+    
+    for codigo in productos.keys():
+        nombre = productos[codigo][0]
+        precio = productos[codigo][2]
+        stock = inventario[codigo][0]
+        
+        if precio >= p_min and precio <= p_max and stock > 0:
+            encontrados.append([nombre, codigo])
+            
+    encontrados.sort()
+    for producto in encontrados:
+        print(f"{producto[0]}--{producto[1]}")
