@@ -71,3 +71,15 @@ def agregar_producto(codigo, nombre, categoria, precio, disponible, stock, vendi
         disp_bool = False
     productos[llave] = [nombre.strip(), categoria.strip(), precio, disp_bool]
     inventario[llave] = [stock, vendidos]
+
+def eliminar_producto(codigo, productos, inventario):
+    llave_encontrada = ""
+    for llave in productos.keys():
+        if llave.lower() == codigo.strip().lower():
+            llave_encontrada = llave
+            
+    if llave_encontrada != "":
+        del productos[llave_encontrada]
+        del inventario[llave_encontrada]
+        return True
+    return False
