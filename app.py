@@ -55,3 +55,10 @@ def buscar_precio(p_min, p_max, productos, inventario):
     encontrados.sort()
     for producto in encontrados:
         print(f"{producto[0]}--{producto[1]}")
+
+def actualizar_precio(codigo, nuevo_precio, productos):
+    for llave in productos.keys():
+        if llave.lower() == codigo.strip().lower():
+            productos[llave][2] = nuevo_precio 
+            return True
+    return False
