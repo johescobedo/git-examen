@@ -1,0 +1,96 @@
+#validadores
+def validar_codigo(codigo, productos):
+    if not codigo or codigo.strip() == "":
+        return False
+    for k in productos.keys():
+        if k.lower() == codigo.strip().lower():
+            return False
+    return True
+
+def validar_nombre(nombre):
+    if not nombre or nombre.strip() == "":
+        return False
+    return True
+
+def validar_categoria(categoria):
+    if not categoria or categoria.strip() == "":
+        return False
+    return True
+
+def validar_precio(precio):
+    return precio > 0
+
+def validar_disponible(opcion):
+    return opcion.strip().lower() in ['s', 'n']
+
+def validar_stock(stock):
+    return stock >= 0
+
+def validar_vendidos(vendidos):
+    return vendidos >= 0
+
+# funciones
+
+def stock_categoria(categoria, productos, inventario):
+    total_stock = 0
+    for codigo in productos.keys():
+        datos_producto = productos[codigo]
+        categoria_producto = datos_producto[1]
+
+        if categoria_producto.lower() == categoria.strip().lower():
+            total_stock = total_stock + inventario[codigo][0]
+    print(f"Stock total para la categoría '{categoria}': {total_stock}")
+
+def buscar_precio(p_min, p_max, productos, inventario):
+    encontrados = []
+    
+    for codigo in productos.keys():
+        nombre = productos[codigo][0]
+        precio = productos[codigo][2]
+        stock = inventario[codigo][0]
+        
+        if precio >= p_min and precio <= p_max and stock > 0:
+            encontrados.append([nombre, codigo])
+            
+    encontrados.sort()
+    for producto in encontrados:
+        print(f"{producto[0]}--{producto[1]}")
+
+def actualizar_precio(codigo, nuevo_precio, productos):
+    for llave in productos.keys():
+        if llave.lower() == codigo.strip().lower():
+            productos[llave][2] = nuevo_precio 
+            return True
+    return False
+
+def agregar_producto(codigo, nombre, categoria, precio, disponible, stock, vendidos, productos, inventario):
+    llave = codigo.strip().upper() 
+    if disponible.lower() == "s":
+        disp_bool = True
+    else:
+        disp_bool = False
+    productos[llave] = [nombre.strip(), categoria.strip(), precio, disp_bool]
+    inventario[llave] = [stock, vendidos]
+
+def eliminar_producto(codigo, productos, inventario):
+    llave_encontrada = ""
+    for llave in productos.keys():
+        if llave.lower() == codigo.strip().lower():
+            llave_encontrada = llave
+            
+    if llave_encontrada != "":
+        del productos[llave_encontrada]
+        del inventario[llave_encontrada]
+        return True
+    return False
+
+def mostrar_productos(productos, inventario):
+    for codigo in productos.keys():
+        print("")
+        print(f"CODIGO: {codigo}")
+        print(f"Nombre: {productos[codigo][0]}")
+        print(f"Categoría: {productos[codigo][1]}")
+        print(f"Precio: ${productos[codigo][2]}")
+        print(f"Disponible: {productos[codigo][3]}")
+        print(f"Stock: {inventario[codigo][0]}")
+        print(f"Vendidos: {inventario[codigo][1]}")
