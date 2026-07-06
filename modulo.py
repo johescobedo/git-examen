@@ -1,4 +1,5 @@
 #validadores
+
 def validar_codigo(codigo, productos):
     if not codigo or codigo.strip() == "":
         return False
@@ -28,7 +29,10 @@ def validar_stock(stock):
 
 def validar_vendidos(vendidos):
     return vendidos >= 0
-
+def validar_min(valor):
+    if valor >= 0:
+        return True
+    return False
 # funciones
 
 def stock_categoria(categoria, productos, inventario):

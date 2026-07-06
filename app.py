@@ -2,18 +2,9 @@ import modulo as mo
 
 def main():
     productos = {
-        "P101": ["Cuaderno", "Papelería", 2490, True],
-        "P102": ["Lápiz", "Papelería", 590, True],
-        "P103": ["Botella", "Accesorios", 6990, False],
-        "P104": ["Mochila", "Accesorios", 24990, True]
     }
     
-    inventario = {
-        "P101": [30, 15],
-        "P102": [120, 50],
-        "P103": [0, 10],
-        "P104": [8, 25]
-    }
+    inventario = {    }
 
     while True:
         print("\n--- MENÚ PRINCIPAL ---")
@@ -44,7 +35,6 @@ def main():
                 cod = input("Código del producto: ")
                 try:
                     nuevo_p = int(input("Nuevo precio: "))
-                    # Validar precio y luego intentar actualizar
                     if mo.validar_precio(nuevo_p):
                         if mo.actualizar_precio(cod, nuevo_p, productos):
                             print("Precio modificado con éxito.")
@@ -69,9 +59,9 @@ def main():
                     
                     if mo.validar_codigo(cod, productos) == False:
                         print("Error: Código vacío o ya registrado.")
-                    elif mo.validar_texto(nom) == False:
+                    elif mo.validar_nombre(nom) == False:
                         print("Error: El nombre no puede estar vacío.")
-                    elif mo.validar_texto(cat) == False:
+                    elif mo.validar_categoria(cat) == False:
                         print("Error: La categoría no puede estar vacía.")
                     elif mo.validar_precio(pre) == False:
                         print("Error: El precio debe ser mayor a 0.")
@@ -104,3 +94,6 @@ def main():
                 
             case _:
                 print("Debe seleccionar una opción válida")
+
+if __name__ == "__main__":
+    main()
